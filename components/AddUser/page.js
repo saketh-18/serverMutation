@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { userContext } from "@/context";
 import { AddNewUser, EditUser } from "@/actions";
@@ -26,6 +26,11 @@ export default function AddUser() {
     setEditUserId,
   } = useContext(userContext);
 
+  useEffect(() => {
+    setInitialFormData(initialFormData);
+  } , [])
+
+
   async function handleNewUser() {
     const res =
       editUserId !== null
@@ -35,7 +40,7 @@ export default function AddUser() {
         console.log(res);
         setIsOpen(false);
         setEditUserId(null);
-        setInitialFormData(intialUser);
+        setInitialFormData(intialUser)
   }
 
   return (
